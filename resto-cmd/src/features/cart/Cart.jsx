@@ -5,7 +5,6 @@ import { SuperCremeux } from '../../common/models'
 function Cart() {
   const store = useStore()
   const [list, setList] = useState(store.getState().list)
-  const totalOrder = list.reduce((prv, crt) => crt.price + prv, 0)
 
   useEffect(() => {
     store.subscribe(() => setList(store.getState().list))
@@ -19,11 +18,6 @@ function Cart() {
           {item.title} {item.price}
         </span>
       ))}
-      {list.length === 0 ? (
-        <p>Total commande {totalOrder} euros</p>
-      ) : (
-        <p>Aucun produit sélectionné pour le moment</p>
-      )}
       <div className="CartNavBar">
         <button
           onClick={() =>
