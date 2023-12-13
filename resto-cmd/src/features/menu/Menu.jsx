@@ -1,23 +1,17 @@
-import { useStore } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import * as ProductList from '../../common/models'
+import { addProduct } from '../../app/store'
 import ProductCard from '../productCard/ProductCard'
-import { DoubleCantal, PouletCroquant, SuperCremeux } from '../../common/models'
-
-const productList = [DoubleCantal, SuperCremeux, PouletCroquant]
 
 function Menu() {
-  const store = useStore()
-
+  const dispatch = useDispatch()
   return (
-    <div>
-      {productList.map((product) => (
+    <div className="Menu">
+      {Object.values(ProductList).map((product) => (
         <ProductCard
+          key={product.name}
           product={product}
-          onSelect={() =>
-            store.dispatch({
-              type: 'ADD_PRODUCT',
-              payload: product,
-            })
-          }
+          onSelect={() => dispatch(addProduct(product))}
         />
       ))}
     </div>

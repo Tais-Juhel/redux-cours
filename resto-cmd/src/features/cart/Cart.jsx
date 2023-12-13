@@ -3,17 +3,13 @@ import { getListQuantityProductPerName } from '../../app/selectors'
 
 function Cart() {
   const list = useSelector(getListQuantityProductPerName)
-
   return (
     <div className="Selection">
-      <h1>Vos produits sélectionnés</h1>
-      {list
-        .filter((product) => product.quantity !== 0)
-        .map((product, index) => (
-          <span key={index} className="SelectedProduct">
-            {product.quantity} x {product.title}
-          </span>
-        ))}
+      {list?.map((item, index) => (
+        <span key={index} className="SelectedProduct">
+          {item.quantity} x {item.title}{' '}
+        </span>
+      ))}
     </div>
   )
 }
